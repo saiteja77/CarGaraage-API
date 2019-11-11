@@ -1,5 +1,8 @@
 package com.bitbyte.cargaraage.api.entities;
 
+import com.bitbyte.cargaraage.api.models.Payment;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -13,6 +16,10 @@ public class Order {
 
     private Long userId;
 
+    @Transient
+    @JsonSetter
+    private Payment payment;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
@@ -20,7 +27,7 @@ public class Order {
     @Temporal(value = TemporalType.DATE)
     private Date orderDate;
 
-    @OneToMany(mappedBy = "order", targetEntity = OrderDetails.class, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "order", targetEntity = OrderDetails.class, fetch = FetchType.EAGER)
     private Set<OrderDetails> orderDetails;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -73,5 +80,13 @@ public class Order {
 
     public void setShippingAddress(ShippingAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }

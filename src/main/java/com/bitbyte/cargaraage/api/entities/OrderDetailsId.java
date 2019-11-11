@@ -8,9 +8,12 @@ public class OrderDetailsId implements Serializable {
 
     private Long orderId;
     private Long userId;
-    private Long carId;
+    private String carId;
 
-    public OrderDetailsId(Long orderId, Long userId, Long carId) {
+    public OrderDetailsId() {
+    }
+
+    public OrderDetailsId(Long orderId, Long userId, String carId) {
         this.orderId = orderId;
         this.userId = userId;
         this.carId = carId;
@@ -32,11 +35,11 @@ public class OrderDetailsId implements Serializable {
         this.userId = userId;
     }
 
-    public Long getCarId() {
+    public String getCarId() {
         return carId;
     }
 
-    public void setCarId(Long carId) {
+    public void setCarId(String carId) {
         this.carId = carId;
     }
 

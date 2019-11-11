@@ -11,7 +11,7 @@ public class OrderDetails {
     @Id
     private Long userId;
     @Id
-    private Long carId;
+    private String carId;
     private Long price;
     private Integer quantity;
 
@@ -55,12 +55,20 @@ public class OrderDetails {
         this.userId = userId;
     }
 
-    public Long getCarId() {
+    public String getCarId() {
         return carId;
     }
 
-    public void setCarId(Long carId) {
+    public void setCarId(String carId) {
         this.carId = carId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Order getOrder() {
